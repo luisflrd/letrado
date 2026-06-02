@@ -2,7 +2,7 @@
 // LETRADO — words.js
 // GAME_WORDS  → palavras sorteadas (sem acento, 5 letras)
 // VALID_WORDS → todas aceitas como tentativa
-// Versão: 0.1.0
+// Versão: 0.1.2
 // ─────────────────────────────────────────────────────────────
 
 const GAME_WORDS = [
@@ -72,79 +72,7 @@ const GAME_WORDS = [
   "fugir","lutar","fumar","morar","casar","botar","bravo","novos","roxos","roxas",
   "verme","horto",
 
-  // versao 0.1.0
-  "cursa","ombro","sorri","chora","grita","pular","beija","botao","fecho","cinto","meias","feijo","milho","trigo","fazer","dizer","ligar","ouvir","golpe","saque","lance","passe","chute","tenis","aviao","serra","norte","leste","oeste","praca","torta","limao","peixe","times","selva","mares","relam","quart","quere","traba","estud","ensin","apren","conhe","desco","empre",
-].filter((w,i,a) => w.length === 5 && a.indexOf(w) === i);
-
-
-// ─── VALID_WORDS ──────────────────────────────────────────────
-const VALID_WORDS = new Set([
-  ...GAME_WORDS,
-  "abaco","abada","abafo","abalo","abana","abano","abate","abeto","aboca","aboio",
-  "abona","abono","abriu","abusa","acaba","acabe","acado","acara","acari","acaro",
-  "acata","acate","acebo","aceda","acede","acedo","aceia","acera","acerb","acere",
-  "acero","acesa","aceta","aceto","achar","achei","achou","acida","acide","acido",
-  "acina","acino","acita","acode","acoes","acofa","acoia","acola","acoma","acona",
-  "acone","acono","acopa","acore","acoro","acosa","acoso","acota","acote","acoto",
-  "acova","acovo","acuar","acuda","acude","acudo","acuia","acuir","acure","acuro",
-  "acusa","acuse","acuso","adaga","adagi","adago","adail","adais","adele","ademi",
-  "adena","adeno","adere","aderi","adero","adiai","adiam","adias","adica","adido",
-  "adiga","adige","adigo","adijo","adila","adimo","adina","adino","adipa","adipo",
-  "adira","adire","adiri","adiro","adita","adite","adito","adiva","adive","adivo",
-  "adobe","adoca","adoco","adoes","adoga","adogo","adola","adole","adolo","adoma",
-  "adome","adomo","adona","adone","adono","adopa","adope","adopo","adore","adori",
-  "adoro","adota","adote","adoto","adova","adove","adovo","adubo","aduco","adufe",
-  "adula","adulo","aduma","adume","adumo","aduna","adune","aduno","adure","aduri",
-  "aduro","adusa","aduso","adust","aduto","afago","afana","afano","afiar","afina",
-  "afine","afino","afora","afore","aforo","afuga","afumo","agave","agiam","agiar",
-  "agias","agido","agimo","agios","agira","agita","agite","agito","agnar","agoes",
-  "agras","agria","agrio","agros","aguar","aguda","agula","aguro","aguta","aguto",
-  "ainda","aiola","aione","aioni","aiora","aioto","ajuga","ajumo","alada","alaga",
-  "alago","alaia","alaio","alais","alame","alana","alano","alapa","alara","alare",
-  "alari","alaro","alata","alate","alato","alave","alavo","albas","album","alcar",
-  "alcoa","aldea","aleia","aleis","aleja","aleje","alejo","alela","alele","aleli",
-  "alelo","alema","alemo","alena","aleno","alepa","alepe","alepo","alera","alere",
-  "aleri","alero","aleta","alete","aleto","aleva","aleve","alevo","alfar","alfas",
-  "algaz","algoz","aliai","alias","alibi","alica","alice","alico","alida","alido",
-  "alifa","alifo","aliga","aligo","alija","alije","alijo","alila","alile","alilo",
-  "alima","alime","alimo","alina","aline","alino","alipa","alipe","alipo","alira",
-  "alire","aliri","aliro","alisa","alise","aliso","alita","alite","alito","aliva",
-  "alive","alivo","almar","almas","almei","almos","aloes","alofe","alofo","aloma",
-  "alome","alomo","alona","alone","alono","alopa","alope","alopo","alora","alore",
-  "alori","aloro","alosa","alose","aloso","alota","alote","aloto","alova","alove",
-  "alovo","aluca","aluco","aluda","alude","aludi","aludo","aluga","alugo","aluia",
-  "aluir","aluis","aluma","alume","alumo","aluna","alune","alura","alure","aluri",
-  "aluro","alusa","aluse","aluso","aluta","alute","aluto","aluva","aluve","aluvo",
-  "amais","amala","amale","amali","amalo","amamo","amana","amane","amano","amapa",
-  "amasa","amase","amaso","amata","amate","amato","amava","amave","amavo","ambas",
-  "ambos","ameia","ameio","ameis","ameja","ameje","amejo","amela","amele","ameli",
-  "amelo","amema","ameme","amemo","amepa","amepe","amepo","amera","amere","ameri",
-  "amero","amesa","amese","ameso","ameta","amete","ameto","ameva","ameve","amevo",
-  "amiam","amiar","amias","amica","amico","amida","amide","amido","amiga","amija",
-  "amije","amijo","amila","amile","amilo","amima","amime","amimo","amina","amine",
-  "amino","amipa","amipe","amipo","amire","amiri","amiro","amisa","amise","amiso",
-  "amita","amite","amito","amiva","amive","amivo","amnio","amoca","amode","amodo",
-  "amoes","amofa","amofo","amoga","amogo","amoia","amoie","amoio","amois","amoja",
-  "amoje","amojo","amola","amole","amoli","amolo","amoma","amome","amomo","amona",
-  "amone","amono","amopa","amope","amopo","amore","amori","amoro","amosa","amose",
-  "amoso","amota","amote","amoto","amova","amove","amovi","amovo","ampla","amplo",
-  "anago","anais","anata","aneis","anema","anemo","aneto","anevo","angra","angue",
-  "anjos","aonde","antro","apora","apose","aposo","apraz","apura","apure","apuro",
-  "arena","arete","arido","arque","arvor","assen","assis","assom","assos","ateal",
-  "ateus","ature","aturo","ambar","aipim","axila","casar","aureo",
-  "bacar","baldo","belas","belga","belos","bosco","buzio","calca","caros","cavoa",
-  "clame","clamo","curau","cacoa","cisao","clone","clube","cofre","dobra","dobro",
-  "donos","ebrio","educa","elege","eleva","emita","ensai","entra","etano","evade",
-  "exato","falso","fanfa","farpa","farsa","fauna","fervo","fisga","flama","flora",
-  "fluxo","forja","garoa","junco","magoa","nervo","ovulo","orlas","papel","pavao",
-  "pavor","perna","pelve","pedal","pomba","pombo","sofra","sorvo","teima","tiara",
-  "valor","valsa","velha","velho","viela","jesus","ebola",
-]);
-
-
-  // versao 0.1.0
-  "cursa","ombro","sorri","chora","grita","pular","beija","botao","fecho","cinto","meias","feijo","milho","trigo","fazer","dizer","ligar","ouvir","golpe","saque","lance","passe","chute","tenis","aviao","serra","norte","leste","oeste","praca","torta","limao","peixe","times","selva","mares","relam","quart","quere","traba","estud","ensin","apren","conhe","desco","empre",
-
+  "cromo","coral","moral","banal","porca","porco","horas","noras","genro","marco","abril","maios","julho","junho","besta","retas",
 // ─── Validação automática no console do navegador ─────────────
 (function checar() {
   const erros = [];
@@ -156,6 +84,6 @@ const VALID_WORDS = new Set([
   if (erros.length) {
     console.error("❌ PALAVRAS COM TAMANHO ERRADO:", erros);
   } else {
-    console.log(`✅ words.js OK — ${GAME_WORDS.length} sorteáveis | ${VALID_WORDS.size} aceitas | ${Object.keys(MAPA_ACENTOS).length} mapeadas`);
+    console.log(`✅ words.js OK — v0.1.2 | ${GAME_WORDS.length} sorteáveis | ${VALID_WORDS.size} aceitas`);
   }
 })();

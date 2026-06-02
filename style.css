@@ -358,3 +358,55 @@ header {
 .stat-label    { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
 .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* ─── MOBILE ─────────────────────────────── */
+@media (max-width: 480px) {
+
+  header {
+    padding: 10px 16px;
+  }
+
+  .logo {
+    font-size: 26px;
+    letter-spacing: 3px;
+  }
+
+  #board-container {
+    padding: 10px 0 6px;
+    flex: 0 0 auto;
+  }
+
+  .row {
+    grid-template-columns: repeat(5, 52px);
+    gap: 4px;
+  }
+
+  .tile {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
+
+  #keyboard {
+    padding: 0 4px 12px;
+    gap: 6px;
+  }
+
+  .kb-row {
+    gap: 4px;
+  }
+
+  .key {
+    height: 46px;
+    min-width: 0;
+    flex: 1;
+    font-size: 12px;
+    padding: 0 2px;
+    border-radius: 5px;
+  }
+
+  .key.wide {
+    flex: 1.5;
+    font-size: 10px;
+  }
+}
