@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letrado</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <span style="width:60px"></span>
+    <div class="logo-wrap">
+      <span class="logo">Letrado</span>
+      <span class="beta-tag">Beta</span>
+    </div>
+    <div class="header-icons">
+      <button class="icon-btn" id="btn-help" title="Como jogar" aria-label="Como jogar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="btn-stats" title="Estatísticas" aria-label="Estatísticas">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- TABULEIRO -->
+  <div id="board-container">
+    <div id="board"></div>
+  </div>
+
+  <!-- TECLADO -->
+  <div id="keyboard"></div>
+
+  <!-- MODAL: Como Jogar -->
+  <div class="modal-overlay" id="modal-help">
+    <div class="modal">
+      <h2>Como Jogar</h2>
+      <p>Adivinhe o <strong>LETRADO</strong> em 6 tentativas.</p>
+      <div class="divider"></div>
+      <p style="margin-bottom:8px;text-align:left;font-size:13px">
+        • Cada palpite deve ser uma palavra válida de 5 letras.<br>
+        • A cor das letras muda para mostrar o quão perto você está.
+      </p>
+      <div class="divider"></div>
+
+      <div class="how-example">
+        <div class="ex-tile c">G</div>
+        <div class="ex-tile">A</div>
+        <div class="ex-tile">T</div>
+        <div class="ex-tile">O</div>
+        <div class="ex-tile">S</div>
+      </div>
+      <div class="how-desc"><strong>G</strong> está na posição correta.</div>
+
+      <div class="how-example">
+        <div class="ex-tile">C</div>
+        <div class="ex-tile p">A</div>
+        <div class="ex-tile">S</div>
+        <div class="ex-tile">A</div>
+        <div class="ex-tile">S</div>
+      </div>
+      <div class="how-desc"><strong>A</strong> está na palavra, mas na posição errada.</div>
+
+      <div class="how-example">
+        <div class="ex-tile">B</div>
+        <div class="ex-tile">O</div>
+        <div class="ex-tile">L</div>
+        <div class="ex-tile a">O</div>
+        <div class="ex-tile">S</div>
+      </div>
+      <div class="how-desc" style="border:none;margin-bottom:0">
+        <strong>O</strong> (segundo) não está na palavra.
+      </div>
+
+      <button class="modal-btn" id="help-close">Entendido!</button>
+    </div>
+  </div>
+
+  <!-- MODAL: Estatísticas -->
+  <div class="modal-overlay" id="modal-stats">
+    <div class="modal">
+      <h2>Estatísticas</h2>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num" id="s-played">0</div>
+          <div class="stat-label">Jogados</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="s-win">0</div>
+          <div class="stat-label">% Vitórias</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="s-streak">0</div>
+          <div class="stat-label">Sequência</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="s-best">0</div>
+          <div class="stat-label">Recorde</div>
+        </div>
+      </div>
+      <button class="modal-btn" id="stats-close">Fechar</button>
+      <button class="modal-btn secondary" id="stats-new">Nova Palavra</button>
+    </div>
+  </div>
+
+  <!-- MODAL: Fim de jogo -->
+  <div class="modal-overlay" id="modal-end">
+    <div class="modal">
+      <h2 id="end-title">Parabéns!</h2>
+      <p id="end-msg"></p>
+      <div class="word-reveal" id="end-word"></div>
+      <button class="modal-btn" id="end-new">Jogar Novamente</button>
+      <button class="modal-btn secondary" id="end-stats">Ver Estatísticas</button>
+    </div>
+  </div>
+
+  <!-- Scripts (ordem importa!) -->
+  <script src="words.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
