@@ -84,12 +84,10 @@ function buildKeyboard() {
 
 // ─── Atualiza cursor visual ────────────────────────────────────────
 function updateCursor() {
-  // Remove cursor de todos os tiles da linha atual
-  for (let c = 0; c < 5; c++) {
-    document.getElementById(`tile-${currentRow}-${c}`)?.classList.remove('cursor');
-  }
-  // Adiciona cursor na posição atual (se não passou das 5)
-  if (currentCol < 5) {
+  // Remove cursor de TODOS os tiles do tabuleiro inteiro
+  document.querySelectorAll('.tile').forEach(t => t.classList.remove('cursor'));
+  // Adiciona cursor só na posição atual (se não passou das 5)
+  if (!gameOver && currentCol < 5) {
     document.getElementById(`tile-${currentRow}-${currentCol}`)?.classList.add('cursor');
   }
 }
