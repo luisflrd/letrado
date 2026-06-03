@@ -2,7 +2,7 @@
 // LETRADO — words.js
 // GAME_WORDS  → palavras sorteadas (sem acento, 5 letras)
 // VALID_WORDS → todas aceitas como tentativa
-// Versão: 0.1.2
+// Versão: 0.1.3
 // ─────────────────────────────────────────────────────────────
 
 const GAME_WORDS = [

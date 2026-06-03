@@ -12,6 +12,7 @@ let currentCol  = 0;
 let board       = [];
 let gameOver    = false;
 let keyStates   = {};
+let resultGrid  = []; // guarda resultado de cada linha pra compartilhar
 let stats       = JSON.parse(localStorage.getItem('letrado-stats') || '{"played":0,"wins":0,"streak":0,"best":0}');
 
 // ─── Normaliza string (remove acentos, uppercase) ──────────────────
@@ -189,6 +190,33 @@ function updateKeys(guess, result) {
   });
 }
 
+// ─── Compartilhar resultado ────────────────────────────────────────
+function gerarTextoCompartilhar(won) {
+  const tentativas = won ? `${currentRow + 1}/6` : 'X/6';
+
+  const emojis = resultGrid.map(linha =>
+    linha.map(r => r === 'correct' ? '🟩' : r === 'present' ? '🟨' : '⬛').join('')
+  ).join('\n');
+
+  return `🔤 Letrado v0.1.3\n\n${tentativas}\n\n${emojis}\n\n👉 letradobr.vercel.app`;
+}
+
+function compartilhar(won) {
+  const texto = gerarTextoCompartilhar(won);
+
+  // Tenta usar Web Share API (mobile) primeiro
+  if (navigator.share) {
+    navigator.share({ text: texto }).catch(() => {});
+  } else {
+    // Fallback: copia pra área de transferência
+    navigator.clipboard.writeText(texto).then(() => {
+      toast('Copiado! Cole onde quiser 😄', 2500);
+    }).catch(() => {
+      toast('Não foi possível copiar 😕', 2000);
+    });
+  }
+}
+
 // ─── Modal fim de jogo ─────────────────────────────────────────────
 function showEndModal(won, word) {
   setTimeout(() => {
@@ -197,6 +225,8 @@ function showEndModal(won, word) {
       ? `Você acertou em ${currentRow + 1} tentativa${currentRow === 0 ? '' : 's'}!`
       : 'Não foi dessa vez. A palavra era:';
     document.getElementById('end-word').textContent  = word;
+    // guarda o estado de vitória no botão compartilhar
+    document.getElementById('end-share').dataset.won = won ? '1' : '0';
     document.getElementById('modal-end').classList.add('open');
   }, won ? 1800 : 1200);
 }
@@ -251,6 +281,7 @@ function handleKey(k) {
     }
 
     const result = evaluate(guess, targetWord);
+    resultGrid.push(result); // salva pra compartilhar
 
     revealRow(currentRow, result, () => {
       updateKeys(guess, result);
@@ -301,6 +332,7 @@ function newGame() {
   currentCol = 0;
   gameOver   = false;
   keyStates  = {};
+  resultGrid = [];
   buildBoard();
   buildKeyboard();
   document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
@@ -328,6 +360,10 @@ document.getElementById('stats-close').addEventListener('click', () =>
 
 document.getElementById('stats-new').addEventListener('click', newGame);
 document.getElementById('end-new').addEventListener('click', newGame);
+document.getElementById('end-share').addEventListener('click', () => {
+  const won = document.getElementById('end-share').dataset.won === '1';
+  compartilhar(won);
+});
 
 document.getElementById('end-stats').addEventListener('click', () => {
   document.getElementById('modal-end').classList.remove('open');
