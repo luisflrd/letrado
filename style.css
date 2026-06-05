@@ -359,6 +359,9 @@ header {
 
 .divider { height: 1px; background: var(--border); margin: 16px 0; }
 
+/* ─── FOOTER ─────────────────────────────── */
+footer a:hover { color: #ffffff !important; }
+
 /* ─── MOBILE ─────────────────────────────── */
 @media (max-width: 480px) {
 
